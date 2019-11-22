@@ -1,3 +1,6 @@
+#Daniel Lobos
+#Text Based adventure game
+
 import random
 import PathBLore
 import PathC
@@ -51,8 +54,9 @@ class Baddie:
             return Dmg
         return Dmg
 
+
 class Hero:
-    def __init__(self, name = PathC.name):
+    def __init__(self, name=PathC.name):
         self.name = name
         self.maxhealth = 100
         self.health = self.maxhealth
@@ -60,13 +64,15 @@ class Hero:
 
     def attack(self):
         Dmg = self.baseDmg
-        PowerStrike = random.randint(0,5)
+        PowerStrike = random.randint(0, 5)
         if PowerStrike == 5:
             print("The intruder rears back as he unleashes a powerful blow")
             Dmg = self.baseDmg * 4
         else:
             print('You attempt to block the hit but only reduce the damage')
         return Dmg
+
+
 def whosTurn():
     if random.randint(0, 1) == 0:
         return "Fuggs"
@@ -89,7 +95,6 @@ def deathCheck():
         pass
 
 
-
 def combat():
     FightChoiceLoop = 0
     while FightChoiceLoop == 0:
@@ -104,6 +109,7 @@ def combat():
         except ValueError:
             print("\nThat was not one of the options, try again.")
 
+
 def DrinkPotion():
     if player.potions < 1:
         print("\nYou do not have any potions left!")
@@ -117,7 +123,6 @@ def DrinkPotion():
             pass
 
 
-
 def attackOption():
     selectedMove = int(input("\n1) Slash \nor \n2) Stab"))
     if selectedMove == 1:
@@ -127,8 +132,9 @@ def attackOption():
     else:
         selectedMove = int(input("\n1) Slash \t 2) Stab \n3) Dodge"))
 
+
 def stabAttack():
-    HorC = random.randint(1,21)
+    HorC = random.randint(1, 21)
     if HorC <= 19:
         print("\nYou hit!")
         enemy.health -= player.attack()
@@ -137,6 +143,7 @@ def stabAttack():
         print("\nCritical stab!")
         enemy.health -= player.attack() * 2
         print("\n{}'s health is: {}".format(enemy.name, enemy.health))
+
 
 def slashAttack():
     HorC = random.randint(1, 21)
@@ -165,6 +172,7 @@ def enemyattack():
         print("\n{} lands a Critical attack!".format(enemy.name))
         print("\n{}'s health is: {}".format(player.name, player.health))
 
+
 def fightOn():
     turn = whosTurn()
     print("\n{} vs {}".format(player.name, enemy.name))
@@ -189,12 +197,15 @@ def fightOn():
 
 player = Character()
 enemy = Baddie("Skeleton")
+
+
 def PathBSkeletonBattle():
     while player.health > 1:
         PathBLore.SkeletonFight()
         fightOn()
         PathBLore.SkeletonDefeat()
         break
+
 
 def PathBZombieBattle():
     while player.health > 1:
@@ -206,6 +217,7 @@ def PathBZombieBattle():
         PathBLore.ZombieBearFight()
         break
 
+
 def PathBZombieBear():
     while player.health > 1:
         global enemy
@@ -213,12 +225,14 @@ def PathBZombieBear():
         fightOn()
         break
 
+
 def PathBEnd():
     PathBLore.afterAllFights()
     PathC.continueLore()
     PathC.ReturnLore()
     PathC.RitualLore()
     PathBLore.PathBHeroLore()
+
 
 def PathBFinalBattle():
     global enemy
