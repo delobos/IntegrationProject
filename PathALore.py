@@ -1,5 +1,5 @@
-#Daniel Lobos
-#Text Based adventure game
+# Daniel Lobos
+# Text Based adventure game
 
 import PathC
 
