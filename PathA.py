@@ -3,11 +3,16 @@
 FuggsData = {'name': "Fuggs", 'health':100, 'location Name': 'Pyramid Entrance', 'location': "You are at the entrance of a pyramid."}
 
 
+
 class Location:
-    def __init__(self, moves, actions, items):
+    def __init__(self, moves, actions, items, doors, secondFloorStatues, puzzleLock, lanterns):
         self.moves = moves
         self.actions = actions
         self.items = items
+        self.doors = doors
+        self.secondFloorStatues = secondFloorStatues
+        self.puzzleLock = puzzleLock
+        self.lanterns = lanterns
         self.description = "At the entrace of this pyramid you can barely make out the dimly lit room inside"
 
 def help():
@@ -210,14 +215,14 @@ def stoneRoomDescription():
 """
 Items dictionary and global class Location call
 """
-items = {'hands':'empty','torch': 'wall', 'Prybar': 'Dog Room', 'Moon Stone': 'Statue hand', 'Chicken Statue': 'Right Side', 'Fox Statue': 'Right Side', 'Grain Statue': 'Right Side', 'Blood Stone': "alter"}
+items = {'hands':'not full','torch': 'wall', 'Prybar': 'Dog Room', 'Moon Stone': 'Statue hand', 'Chicken Statue': 'Right Side', 'Fox Statue': 'Right Side', 'Grain Statue': 'Right Side', 'Blood Stone': "alter"}
 doors = {"Desert Door":"open", 'Second floor stairs door': 'closed', 'Third floor stairs door': 'closed'}
 secondFloorStatues = {'Chicken Statue': 'Right Side', 'Fox Statue': 'Right Side', 'Grain Statue': 'Right Side'}
 puzzleLock = {'Chicken Statue': 'unlock','Fox Statue': 'unlock', 'Grain Statue': 'unlock'}
 lanterns = {'Lantern 1': 'unlit','Lantern 2': 'unlit','Lantern 3': 'unlit', 'Lantern 4': 'unlit', 'Lantern 5': 'unlit', 'Lantern 6': 'unlit','Lantern 7': 'unlit'}
 
 
-Room = Location(('forward','back', 'up', 'down', 'left', 'right'), ('look'), items)
+Room = Location(('forward','back', 'up', 'down', 'left', 'right'), ('look'), items,  doors, secondFloorStatues, puzzleLock, lanterns)
 
 """
 Room possible moves and actions
@@ -305,7 +310,7 @@ def entranceRoomMoves(playerMoves):
         FuggsData['location Name'] = 'Dog Statue Room'
         FuggsData['location'] = "You are in an old dusty room. A large statue of a dog on the right side of the room"
         global Room
-        Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'grab', 'take', 'use', 'place', 'put', 'give'), items)
+        Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'grab', 'take', 'use', 'place', 'put', 'give'), items, doors, secondFloorStatues, puzzleLock, lanterns)
         DogStatueRoom()
     elif playerMoves == 'back' or playerMoves == 'down':
         if doors['Desert Door'] == 'open':
@@ -319,7 +324,7 @@ def entranceRoomMoves(playerMoves):
         StorageRoomDescription()
         FuggsData['location Name'] = 'Storage Room'
         FuggsData['location'] = 'You are in a storage room full of furniture, barrels, and crates.'
-        Room = Location(('forward', 'back', 'left','up', 'down', 'right'), ('look', 'grab', 'take', 'pry'), items)
+        Room = Location(('forward', 'back', 'left','up', 'down', 'right'), ('look', 'grab', 'take', 'pry'), items, doors, secondFloorStatues, puzzleLock, lanterns)
         StorageRoom()
     elif playerMoves == 'left':
         print("You see a big plain wall")
@@ -343,7 +348,7 @@ def storageRoomMoves(playerMoves):
         EntranceRoomDescription()
         FuggsData['location Name'] = 'Entrance Room'
         FuggsData['location'] = 'The entrance room with the figures on the floor'
-        Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look'), items)
+        Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look'), items,  doors, secondFloorStatues, puzzleLock, lanterns)
         EntranceRoom()
     else:
         print("That is not a valid input, please visit the 'Help' option if you need to see the acceptable responses.")
@@ -358,14 +363,14 @@ def DogStatueRoomMoves(playerMoves):
         FuggsData['location Name'] = 'Entrance Room'
         FuggsData['location'] = 'The entrance room with the figures on the floor'
         global Room
-        Room = Location(('forward','back', 'up', 'down', 'left', 'right'), ('look'), items)
+        Room = Location(('forward','back', 'up', 'down', 'left', 'right'), ('look'), items,  doors, secondFloorStatues, puzzleLock, lanterns)
         EntranceRoom()
     elif playerMoves == 'right':
         if items['Moon Stone'] == 'Dog Statue':
             baseFloorRoomDescription()
             FuggsData['location Name'] = 'Base Floor Staircase Room'
             FuggsData['location'] = 'You are in an empty room. Against the north side of the wall is a staircase leading up.'
-            Room = Location(('forward', 'back',  'up', 'down', 'left', 'right'), ('look'), items)
+            Room = Location(('forward', 'back',  'up', 'down', 'left', 'right'), ('look'), items, doors, secondFloorStatues, puzzleLock, lanterns)
             baseFloorRoom()
         else:
             print("You see a statue of a dog, in the sitting position and it's toungue out  as if it was panting.")
@@ -385,7 +390,7 @@ def baseFloorStaircaseRoomMoves(playerMoves):
         FuggsData['location'] = 'You are in the middle of the right rooms, with three statues on your right and 3 empty pillars on the left side of the room'
         FuggsData['location Name'] = 'Three Statue Room Right Side'
         global Room
-        Room = Location(('forward','back', 'up', 'down', 'left', 'right'), ('look', 'take', 'carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items)
+        Room = Location(('forward','back', 'up', 'down', 'left', 'right'), ('look', 'take', 'carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, secondFloorStatues, puzzleLock, lanterns)
         threeStatueRoom1()
     elif playerMoves == 'back' or playerMoves == 'down':
         print("You are met with a plain wall and nothing of interest to see.")
@@ -397,7 +402,7 @@ def baseFloorStaircaseRoomMoves(playerMoves):
         DogStatueRoomDescription()
         FuggsData['location Name'] = 'Dog Statue Room'
         FuggsData['location'] = "The entrance of the room with small piles of gold, a random assortment of jewels, and a large statue of a dog on the right side of the room"
-        Room = Location(('forward', 'back', 'left', 'up', 'down', 'right'), ('look', 'grab', 'take', 'use', 'place', 'put', 'give'), items)
+        Room = Location(('forward', 'back', 'left', 'up', 'down', 'right'), ('look', 'grab', 'take', 'use', 'place', 'put', 'give'), items, doors, secondFloorStatues, puzzleLock, lanterns)
         DogStatueRoom()
     else:
         print("That is not a valid input, please visit the 'Help' option if you need to see the acceptable responses.")
@@ -409,16 +414,17 @@ def threeStatueRoom1Moves(playerMoves):
         FuggsData['location Name'] = 'Base Floor Staircase Room'
         FuggsData['location'] = 'You are in an empty room. Against the north side of the wall is a staircase leading up.'
         global Room
-        Room = Location(('forward', 'back',  'up', 'down', 'left', 'right'), ('look'), items)
+        Room = Location(('forward', 'back',  'up', 'down', 'left', 'right'), ('look'), items, doors, secondFloorStatues, puzzleLock, lanterns)
         baseFloorRoom()
     elif playerMoves == 'right':
         print("You see three statues on a pedestal. One of a chicken, another of a bag of grain, and the last one of a fox.")
         gameOn()
     elif playerMoves == 'left':
+        threeStatueLock()
         threeStatueRoom2Description()
         FuggsData['location Name'] = 'Three Statue Room Left Side'
         FuggsData['location'] = 'You are in the left side of the room with three empty pedestals'
-        Room = Location(('forward', 'back', 'left',  'up', 'down', 'right'), ('look', 'take','carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items)
+        Room = Location(('forward', 'back', 'left',  'up', 'down', 'right'), ('look', 'take','carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, secondFloorStatues, puzzleLock, lanterns)
         threeStatueRoom2()
     elif playerMoves == 'back' or playerMoves == 'down':
         print("You are met with a blank wall")
@@ -438,17 +444,18 @@ def threeStatueRoom2Moves(playerMoves):
                 SevenStatueRoomDescription()
                 FuggsData['location'] = 'You see seven statues on the south side of the wall, each of them holding a lantern'
                 global Room
-                Room = Location(('forward', 'back',  'up', 'down', 'left', 'right'), ('look', 'light'), items)
+                Room = Location(('forward', 'back',  'up', 'down', 'left', 'right'), ('look', 'light'), items, doors, secondFloorStatues, puzzleLock, lanterns)
                 sevenStatueRoom()
             else:
                 FuggsData['location'] = 'You are in a pitch black room'
                 print(FuggsData['location'])
                 gameOn()
     elif playerMoves == 'right':
+        threeStatueLock()
         threeStatueRoom1Description()
         FuggsData['location Name'] = 'Three Statue Room Right Side'
         FuggsData['location'] = 'You are in the middle of the right room, with three statues on your right and 3 empty pillars on the left side of the room'
-        Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'take','carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items)
+        Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'take','carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, secondFloorStatues, puzzleLock, lanterns)
         threeStatueRoom1()
     elif playerMoves == 'left':
         print("You see three statue pedestals")
@@ -468,7 +475,7 @@ def sevenStatueRoomMoves(playerMoves):
                 FuggsData['location Name'] = 'Stone Room'
                 FuggsData['location'] = "You are in the room with an alter and sitting in it's own stand is the Blood Stone"
                 global Room
-                Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'take', 'grab'), items)
+                Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'take', 'grab'), items, doors, secondFloorStatues, puzzleLock, lanterns)
                 stoneRoom()
             else:
                 print("You are met with a blank wall")
@@ -484,7 +491,7 @@ def sevenStatueRoomMoves(playerMoves):
             threeStatueRoom2Description()
             FuggsData['location Name'] = 'Three Statue Room Left Side'
             FuggsData['location'] = 'You are in the left side of the room with three statue pedestals'
-            Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'take', 'carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items)
+            Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'take', 'carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, secondFloorStatues, puzzleLock, lanterns)
             threeStatueRoom2()
         else:
             print("That is not a valid input, please visit the 'Help' option if you need to see the acceptable responses.")
@@ -500,7 +507,7 @@ def stoneRoomMoves(playerMoves):
         FuggsData['location'] = 'You see seven statues on the south side of the wall, each of them holding a lantern'
         FuggsData['location Name'] = 'Seven Statue Room'
         global Room
-        Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'light'), items)
+        Room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'light'), items, doors, secondFloorStatues, puzzleLock, lanterns)
         sevenStatueRoom()
     elif playerMoves == 'back' or playerMoves == 'down':
         print("You are met with a blank wall that is slanting upward to meet at the vertex of the four walls.")
@@ -532,7 +539,6 @@ def storageRoomActions(playerAction):
         storageRoomGrabAction = input("What would you like to {}? ".format(playerAction)).lower()
         if storageRoomGrabAction == 'torch':
             items['torch'] = 'inventory'
-            items['hands'] = 'not full'
             print("You grab the torch off the wall and hold it in one of your hands.")
             gameOn()
         else:
@@ -598,64 +604,48 @@ def threeStatueRoom1Actions(playerAction):
         print("There is a staircase to your north that you first came up. To your left is the doorway to the other part of the room.")
         print("To your right is the statues of the chicken, fox, and bag of grain.")
         gameOn()
+
     elif playerAction == 'grab' or playerAction == 'take' or playerAction == 'carry' or playerAction == 'grab' or playerAction == 'haul':
         threeStatueRoom1grab = input("What would you like to {}? ".format(playerAction)).lower()
-        if secondFloorStatues['Chicken Statue'] == 'Right Side' and secondFloorStatues['Fox Statue'] == 'Right Side' and secondFloorStatues['Grain Statue'] == 'Right Side' and items['hands'] == 'not full':
-            if threeStatueRoom1grab == 'chicken' or threeStatueRoom1grab == 'chicken statue':
-                secondFloorStatues['Chicken Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the chicken")
-                gameOn()
-            elif threeStatueRoom1grab == 'fox' or threeStatueRoom1grab == 'fox statue':
-                secondFloorStatues['Fox Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the fox")
-                puzzleLock['Chicken Statue'] = 'lock'
-                puzzleLock['Grain Statue'] = 'lock'
-                gameOn()
-            elif threeStatueRoom1grab == 'grain' or threeStatueRoom1grab == 'grain statue' or threeStatueRoom1grab == 'bag of grain statue':
-                secondFloorStatues['Grain Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the bag of grain")
-                puzzleLock['Chicken Statue'] = 'lock'
-                puzzleLock['Fox Statue'] = 'lock'
-                gameOn()
+        if threeStatueRoom1grab == 'chicken' or threeStatueRoom1grab == 'chicken statue':
+            if secondFloorStatues['Chicken Statue'] == 'Right Side' and items['hands'] == 'not full':
+                if puzzleLock['Chicken Statue'] == 'lock':
+                    print("Statue locked in place, try resetting the statues")
+                    gameOn()
+                else:
+                    secondFloorStatues['Chicken Statue'] = 'carry'
+                    items['hands'] = 'full'
+                    print("You pick up the statue of the chicken")
+                    gameOn()
             else:
-                print("Error 1")
+                print("Not a valid input, try something else or check your spelling room 1 error chick")
                 gameOn()
-        elif secondFloorStatues['Chicken Statue'] == 'Right Side' and secondFloorStatues['Fox Statue'] == 'Right Side' or secondFloorStatues['Grain Statue'] == 'Right Side' and items['hands'] == 'not full':
-            if puzzleLock['Chicken Statue'] == 'lock' or puzzleLock['Grain Statue'] == 'lock' or puzzleLock['Fox Statue'] == 'lock':
-                print("The remaining statues are locked in place. Maybe try a different order?")
-                gameOn()
-            elif puzzleLock['Chicken Statue']
-            if threeStatueRoom1grab == 'fox' or threeStatueRoom1grab == 'fox statue':
-                secondFloorStatues['Fox Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the fox")
-                gameOn()
-            elif threeStatueRoom1grab == 'grain' or threeStatueRoom1grab == 'grain statue' or threeStatueRoom1grab == 'bag of grain statue':
-                secondFloorStatues['Grain Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the bag of grain")
-                gameOn()
+        elif threeStatueRoom1grab == 'fox' or threeStatueRoom1grab == 'fox statue':
+            if secondFloorStatues['Fox Statue'] == 'Right Side' and items['hands'] == 'not full':
+                if puzzleLock['Fox Statue'] == 'lock':
+                    print("Statue locked in place, try resetting the statues")
+                    gameOn()
+                else:
+                    secondFloorStatues['Fox Statue'] = 'carry'
+                    items['hands'] = 'full'
+                    print("You pick up the statue of the fox.")
+                    gameOn()
             else:
-                print("Error 2")
+                print("Not a valid input, try something else or check your spelling room 1 error fox")
                 gameOn()
-        elif secondFloorStatues['Grain Statue'] == 'Right Side' or secondFloorStatues['Fox Statue'] == 'Right Side' and secondFloorStatues['hands'] == 'full':
-            if threeStatueRoom1grab == 'grain' or threeStatueRoom1grab == 'grain statue' or threeStatueRoom1grab == 'bag of grain statue':
-                secondFloorStatues['Grain Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the bag of grain")
-                gameOn()
-            elif threeStatueRoom1grab == 'fox' or threeStatueRoom1grab == 'fox statue':
-                secondFloorStatues['Fox Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the fox")
-                gameOn()
+        elif threeStatueRoom1grab == 'grain' or threeStatueRoom1grab == 'grain statue' or threeStatueRoom1grab == 'bag of grain statue':
+            if secondFloorStatues['Grain Statue'] == 'Right Side' and items['hands'] == 'not full':
+                if puzzleLock['Grain Statue'] == 'lock':
+                    print("Statue locked in place, try resetting the statues")
+                    gameOn()
+                else:
+                    secondFloorStatues['Grain Statue'] = 'carry'
+                    items['hands'] = 'full'
+                    print("You pick up the statue of the bag of grain.")
+                    gameOn()
             else:
-                print("Error 3")
+                print("Not a valid input, try something else or check your spelling room 1 error grain")
                 gameOn()
-        elif secondFloorStatues['Chicken Statue'] == 'Right Side' and
         else:
             print("The statues are on the other side")
             gameOn()
@@ -664,16 +654,19 @@ def threeStatueRoom1Actions(playerAction):
             print("You place the chicken statue down on the pedestal")
             secondFloorStatues['Chicken Statue'] = 'Right Side'
             items['hands'] = 'not full'
+            puzzleLockReset()
             gameOn()
-        elif items['hands'] == 'full' and items['Fox Statue'] == 'carry':
+        elif items['hands'] == 'full' and secondFloorStatues['Fox Statue'] == 'carry':
             print("You place the Fox statue down on the pedestal")
             secondFloorStatues['Fox Statue'] = 'Right Side'
             items['hands'] = 'not full'
+            puzzleLockReset()
             gameOn()
-        elif items['hands'] == 'full' and items['Grain Statue'] == 'carry':
-            print("You place the chicken statue down on the pedestal")
+        elif items['hands'] == 'full' and secondFloorStatues['Grain Statue'] == 'carry':
+            print("You place the grain statue down on the pedestal")
             secondFloorStatues['Grain Statue'] = 'Right Side'
             items['hands'] = 'not full'
+            puzzleLockReset()
             gameOn()
         else:
                 print("You have nothing to put down")
@@ -692,32 +685,44 @@ def threeStatueRoom2Actions(playerAction):
             gameOn()
     elif playerAction == 'grab' or playerAction == 'take' or playerAction == 'carry' or playerAction == 'grab' or playerAction == 'haul':
         threeStatueRoom2grab = input("What would you like to {}? ".format(playerAction)).lower()
-        if secondFloorStatues['Chicken Statue'] == 'Left Side' and items['hands'] != 'full':
-            if threeStatueRoom2grab == 'chicken' or threeStatueRoom2grab == 'chicken statue':
-                secondFloorStatues['Chicken Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the chicken")
-                gameOn()
+        if threeStatueRoom2grab == 'chicken' or threeStatueRoom2grab == 'chicken statue':
+            if secondFloorStatues['Chicken Statue'] == 'Left Side' and items['hands'] == 'not full':
+                if puzzleLock['Chicken Statue'] == 'lock':
+                    print("Statue locked in place, try resetting the statues")
+                    gameOn()
+                else:
+                    secondFloorStatues['Chicken Statue'] = 'carry'
+                    items['hands'] = 'full'
+                    print("You pick up the statue of the chicken")
+                    gameOn()
             else:
-                print("Either your hands are full or the statue is on the other side.")
+                print("Not a valid input, try something else or check your spelling room 2 error chick")
                 gameOn()
-        elif secondFloorStatues['Fox Statue'] == 'Left Side' and items['hands'] != 'full':
-            if threeStatueRoom2grab == 'fox' or threeStatueRoom2grab == 'fox statue':
-                secondFloorStatues['Fox Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the fox.")
-                gameOn()
+        elif threeStatueRoom2grab == 'fox' or threeStatueRoom2grab == 'fox statue':
+            if secondFloorStatues['Fox Statue'] == 'Left Side' and items['hands'] == 'not full':
+                if puzzleLock['Fox Statue'] == 'lock':
+                    print("Statue locked in place, try resetting the statues")
+                    gameOn()
+                else:
+                    secondFloorStatues['Fox Statue'] = 'carry'
+                    items['hands'] = 'full'
+                    print("You pick up the statue of the fox.")
+                    gameOn()
             else:
-                print("Either your hands are full or the statue is on the other side.")
+                print("Not a valid input, try something else or check your spelling room 2 error fox")
                 gameOn()
-        elif secondFloorStatues['Grain Statue'] == 'Left Side' and items['hands'] != 'full':
-            if threeStatueRoom2grab == 'grain' or threeStatueRoom2grab == 'grain statue' or threeStatueRoom2grab == 'bag of grain statue':
-                secondFloorStatues['Grain Statue'] = 'carry'
-                items['hands'] = 'full'
-                print("You pick up the statue of the bag of grain.")
-                gameOn()
+        elif threeStatueRoom2grab == 'grain' or threeStatueRoom2grab == 'grain statue' or threeStatueRoom2grab == 'bag of grain statue':
+            if secondFloorStatues['Grain Statue'] == 'Left Side' and items['hands'] == 'not full':
+                if puzzleLock['Grain Statue'] == 'lock':
+                    print("Statue locked in place, try resetting the statues")
+                    gameOn()
+                else:
+                    secondFloorStatues['Grain Statue'] = 'carry'
+                    items['hands'] = 'full'
+                    print("You pick up the statue of the bag of grain.")
+                    gameOn()
             else:
-                print("Either your hands are full or the statue is on the other side.")
+                print("Not a valid input, try something else or check your spelling room 2 error grain")
                 gameOn()
         else:
             print("The statues are on the other side")
@@ -736,7 +741,7 @@ def threeStatueRoom2Actions(playerAction):
             threeStatueSolutionCheck()
             gameOn()
         elif items['hands'] == 'full' and secondFloorStatues['Grain Statue'] == 'carry':
-            print("You place the chicken statue down on the pedestal")
+            print("You place the grain statue down on the pedestal")
             secondFloorStatues['Grain Statue'] = 'Left Side'
             items['hands'] = 'not full'
             threeStatueSolutionCheck()
@@ -798,6 +803,41 @@ def threeStatueSolutionCheck():
         print("The wall on the north side of the room slides up to reveal another staircase.")
     else:
         pass
+
+def threeStatueLock():
+    if secondFloorStatues['Chicken Statue'] == 'Right Side' and secondFloorStatues['Grain Statue'] == 'Right Side' and secondFloorStatues['Fox Statue'] == 'Left Side':
+        puzzleLock['Grain Statue'] = 'lock'
+        puzzleLock['Chicken Statue'] = 'lock'
+        print('1')
+    elif secondFloorStatues['Chicken Statue'] == 'Left Side' and secondFloorStatues['Grain Statue'] == 'Left Side' and secondFloorStatues['Fox Statue'] == 'Right Side':
+        puzzleLock['Grain Statue'] = 'lock'
+        puzzleLock['Chicken Statue'] = 'lock'
+        print('2')
+    elif secondFloorStatues['Chicken Statue'] == 'Left Side' and secondFloorStatues['Grain Statue'] == 'Right Side' and secondFloorStatues['Fox Statue'] == 'Left Side':
+        puzzleLock['Fox Statue'] = 'lock'
+        puzzleLock['Chicken Statue'] = 'lock'
+        print('3')
+    elif secondFloorStatues['Chicken Statue'] == 'Right Side' and secondFloorStatues['Grain Statue'] == 'Left Side' and secondFloorStatues['Fox Statue'] == 'Right Side':
+        puzzleLock['Fox Statue'] = 'lock'
+        puzzleLock['Chicken Statue'] = 'lock'
+        print('4')
+    else:
+        pass
+
+def puzzleLockReset():
+    if secondFloorStatues['Chicken Statue'] == 'Right Side' and secondFloorStatues['Grain Statue'] == 'Right Side' and secondFloorStatues['Fox Statue'] == 'Right Side':
+        puzzleLock['Fox Statue'] = 'unlock'
+        puzzleLock['Chicken Statue'] = 'unlock'
+        puzzleLock['Grain Statue'] = 'unlock'
+        print('5')
+    elif secondFloorStatues['Chicken Statue'] == 'Left Side' and secondFloorStatues['Grain Statue'] == 'Left Side' and secondFloorStatues['Fox Statue'] == 'Left Side':
+        puzzleLock['Fox Statue'] = 'unlock'
+        puzzleLock['Chicken Statue'] = 'unlock'
+        puzzleLock['Grain Statue'] = 'unlock'
+        print('6')
+    else:
+        pass
+
 
 def sevenStatuesSolutionCheck():
     if lanterns['Lantern 3'] == 'lit' and lanterns['Lantern 4'] == 'lit' and lanterns['Lantern 7'] == 'lit':
@@ -940,7 +980,10 @@ def gameOn():
 
     if FuggsData['health'] < 1:
         print("You are dead! Too bad. You seemed like a nice person.")
+    elif FuggsData['location Name'] == 'Outside Pyramid':
+        print("JOURNEY CONTINUE")
     else:
         gameOn()
 
 startPathA()
+
