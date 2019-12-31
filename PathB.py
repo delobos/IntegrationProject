@@ -11,18 +11,18 @@ class Character:
         self.name = name
         self.maxhealth = 100
         self.health = self.maxhealth
-        self.BaseDmg = 9
+        self.Basedmg = 9
         self.weapon = weapon
         self.potions = 6
 
     def attack(self):
-        Dmg = self.BaseDmg
+        dmg = self.Basedmg
         if self.weapon == "Shortsword":
-            Dmg += 6
+            dmg += 6
         elif self.weapon == "":
-            Dmg = self.BaseDmg
+            dmg = self.Basedmg
 
-        return Dmg
+        return dmg
 
 
 class Baddie:
@@ -30,29 +30,29 @@ class Baddie:
         self.name = name
         self.maxhealth = 100
         self.health = self.maxhealth
-        self.baseDmg = 5
+        self.base_dmg = 5
 
     def attack(self):
-        Dmg = self.baseDmg
+        dmg = self.base_dmg
         if self.name == "Zombie":
             bite = random.randint(0, 1)
             if bite == 1:
                 print("Zombie tries to bite!")
-                Dmg += 5
+                dmg += 5
             else:
                 pass
-            return Dmg
+            return dmg
         elif self.name == "Skeleton":
-            Dmg += 2
+            dmg += 2
         elif self.name == "Undead Lou":
-            Chomp = random.randint(0, 1)
-            if Chomp == 1:
-                print("Undead Lou tries to Chomp!")
-                Dmg += 8
+            chomp = random.randint(0, 1)
+            if chomp == 1:
+                print("Undead Lou tries to chomp!")
+                dmg += 8
             else:
                 pass
-            return Dmg
-        return Dmg
+            return dmg
+        return dmg
 
 
 class Hero:
@@ -60,27 +60,27 @@ class Hero:
         self.name = name
         self.maxhealth = 100
         self.health = self.maxhealth
-        self.baseDmg = 20
+        self.base_dmg = 20
 
     def attack(self):
-        Dmg = self.baseDmg
-        PowerStrike = random.randint(0, 5)
-        if PowerStrike == 5:
+        dmg = self.base_dmg
+        power_strike = random.randint(0, 5)
+        if power_strike == 5:
             print("The intruder rears back as he unleashes a powerful blow")
-            Dmg = self.baseDmg * 4
+            dmg = self.base_dmg * 4
         else:
             print('You attempt to block the hit but only reduce the damage')
-        return Dmg
+        return dmg
 
 
-def whosTurn():
+def whos_turn():
     if random.randint(0, 1) == 0:
         return "Fuggs"
     else:
         return enemy.name
 
 
-def deathCheck():
+def death_check():
     if player.health < 1:
         print("Too badly inured you fall over dead.")
         print("Maybe next time will be better")
@@ -96,21 +96,21 @@ def deathCheck():
 
 
 def combat():
-    FightChoiceLoop = 0
-    while FightChoiceLoop == 0:
+    fight_choice_loop = 0
+    while fight_choice_loop == 0:
         try:
-            FightChoice = int(input("1) Attack \nor \n2) Drink Potion"))
-            if FightChoice == 1:
-                attackOption()
-                FightChoiceLoop += 1
-            elif FightChoice == 2:
-                DrinkPotion()
-                FightChoiceLoop += 1
+            fight_choice = int(input("1) Attack \nor \n2) Drink Potion"))
+            if fight_choice == 1:
+                attack_option()
+                fight_choice_loop += 1
+            elif fight_choice == 2:
+                drink_potion()
+                fight_choice_loop += 1
         except ValueError:
             print("\nThat was not one of the options, try again.")
 
 
-def DrinkPotion():
+def drink_potion():
     if player.potions < 1:
         print("\nYou do not have any potions left!")
     else:
@@ -123,19 +123,19 @@ def DrinkPotion():
             pass
 
 
-def attackOption():
-    selectedMove = int(input("\n1) Slash \nor \n2) Stab"))
-    if selectedMove == 1:
-        slashAttack()
-    elif selectedMove == 2:
-        stabAttack()
+def attack_option():
+    selected_move = int(input("\n1) Slash \nor \n2) Stab"))
+    if selected_move == 1:
+        slash_attack()
+    elif selected_move == 2:
+        stab_attack()
     else:
-        selectedMove = int(input("\n1) Slash \t 2) Stab \n3) Dodge"))
+        selected_move = int(input("\n1) Slash \t 2) Stab \n3) Dodge"))
 
 
-def stabAttack():
-    HorC = random.randint(1, 21)
-    if HorC <= 19:
+def stab_attack():
+    hit_or_crit = random.randint(1, 21)
+    if hit_or_crit <= 19:
         print("\nYou hit!")
         enemy.health -= player.attack()
         print("\n{}'s health is: {}".format(enemy.name, enemy.health))
@@ -145,11 +145,11 @@ def stabAttack():
         print("\n{}'s health is: {}".format(enemy.name, enemy.health))
 
 
-def slashAttack():
-    HorC = random.randint(1, 21)
-    if HorC <= 5:
+def slash_attack():
+    hit_or_crit = random.randint(1, 21)
+    if hit_or_crit <= 5:
         print("\nYou miss!")
-    elif 5 < HorC < 20:
+    elif 5 < hit_or_crit < 20:
         enemy.health -= player.attack() + 5
         print("\nYou hit!")
         print("\n{}'s health is: {}".format(enemy.name, enemy.health))
@@ -159,11 +159,11 @@ def slashAttack():
         print("\n{}'s health is: {}".format(enemy.name, enemy.health))
 
 
-def enemyattack():
-    HorC = random.randint(1, 21)
-    if HorC <= 5:
+def enemy_attack():
+    hit_or_crit = random.randint(1, 21)
+    if hit_or_crit <= 5:
         print("\n{}'s attack misses!".format(enemy.name))
-    elif 5 < HorC < 20:
+    elif 5 < hit_or_crit < 20:
         player.health -= enemy.attack()
         print("\n{}'s attack lands!".format(enemy.name))
         print("\n{}'s health is: {}".format(player.name, player.health))
@@ -173,8 +173,8 @@ def enemyattack():
         print("\n{}'s health is: {}".format(player.name, player.health))
 
 
-def fightOn():
-    turn = whosTurn()
+def fight_on():
+    turn = whos_turn()
     print("\n{} vs {}".format(player.name, enemy.name))
     print("{} goes first!".format(turn))
 
@@ -182,15 +182,15 @@ def fightOn():
         if turn == 'Fuggs':
             print("\n~~~{}'s Turn~~~".format(player.name))
             combat()
-            if deathCheck():
+            if death_check():
                 pass
             else:
                 turn = enemy.name
 
         else:
             print("\n~~~{}'s turn!~~~".format(enemy.name))
-            enemyattack()
-            if deathCheck():
+            enemy_attack()
+            if death_check():
                 pass
             else:
                 turn = "Fuggs"
@@ -199,34 +199,34 @@ player = Character()
 enemy = Baddie("Skeleton")
 
 
-def PathBSkeletonBattle():
+def path_b_skeleton_battle():
     while player.health > 1:
         PathBLore.SkeletonFight()
-        fightOn()
+        fight_on()
         PathBLore.SkeletonDefeat()
         break
 
 
-def PathBZombieBattle():
+def path_b_zombie_battle():
     while player.health > 1:
         global enemy
         enemy = Baddie("Zombie")
-        fightOn()
+        fight_on()
         PathBLore.ZombieDefeat()
         PathBLore.AfterFirstFight()
         PathBLore.ZombieBearFight()
         break
 
 
-def PathBZombieBear():
+def path_b_zombie_bear():
     while player.health > 1:
         global enemy
         enemy = Baddie("Undead Lou")
-        fightOn()
+        fight_on()
         break
 
 
-def PathBEnd():
+def path_b_end():
     PathBLore.afterAllFights()
     PathC.continueLore()
     PathC.ReturnLore()
@@ -234,8 +234,8 @@ def PathBEnd():
     PathBLore.PathBHeroLore()
 
 
-def PathBFinalBattle():
+def path_b_final_battle():
     global enemy
     enemy = Hero()
-    fightOn()
+    fight_on()
 

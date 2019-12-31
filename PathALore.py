@@ -3,7 +3,8 @@
 
 import PathC
 
-def chapter1PathA():
+
+def chapter1_path_a():
     print("\nYou make your way down the hill from your home ready to take on anything that comes your way in the Morgaric Desert.")
     print("As you trek through the desert, you wander for what seems like ages. A full day passes before a delirious state you see an Oasis in the distance.")
     print("The floor in front of you seems to wave in front of you as you approach the Oasis before it vanishes before your eyes, revealing nothing but more sand.")
@@ -13,8 +14,9 @@ def chapter1PathA():
     print("With the sun shining brightly to your side, it is very difficult to make out what is inside.")
     print("You inch your way into the hallway leading into the first room.")
 
-def pathAreturn():
-    PathC.continueLore()
-    PathC.ReturnLore()
-    PathC.RitualLore()
-    PathC.HeroLore()
+
+def path_a_return():
+    PathC.continue_lore()
+    PathC.return_lore()
+    PathC.ritual_lore()
+    PathC.hero_lore()

@@ -4,6 +4,7 @@
 
 import PathC
 
+
 def chapter1():
     print("\nYou make your way down the hill"
           " and towards The old Forest of Wynn."
@@ -81,31 +82,31 @@ def chapter1():
           " I want to add you tuo my"
           " collection' says the old man.")
 
-def ZombieFight():
+def zombie_fight():
     print("\nThe Zombie drops the items in"
           " its hands and begins to make"
           " it's way over to feast on you!")
 
 
-def SkeletonFight():
+def skeleton_fight():
     print("\nThe Skeleton with a rusted "
           "longsword in hand, lowers it's "
           "body in a stance you know from "
           "sparing is one ready for a fight.")
 
-def SkeletonDefeat():
+def skeleton_defeat():
     print("\n'Sizrio! Nooo! He was my "
           "favorite soldier, we were"
           " just truly becoming friends!")
-    ZombieFight()
+    zombie_fight()
 
-def ZombieDefeat():
+def zombie_defeat():
     print("\n'Joseph! Nooo! He was my favorite"
           " zombie, and he was just "
           "getting good at juggling"
           " for me!")
 
-def AfterFirstFight():
+def after_first_fight():
     print("\n'Okay, okay, I was mistaken "
           "you are strong. Let me gather"
           " my things and we can leave.' "
@@ -115,7 +116,7 @@ def AfterFirstFight():
 
     print("'Everything okay in there?!' but to no response.")
 
-def ZombieBearFight():
+def zombie_bear_fight():
     print("You hear the clattering of chains as"
           " they hit the forest floor followed"
           " by a tremendous roar as the floor "
@@ -136,29 +137,29 @@ def ZombieBearFight():
           " and charging you.")
 
 
-def afterAllFights():
+def after_all_fight():
     print("'I'm sorry! Please don't kill"
           " me! Here have the stone I don't need it!'")
-    NecromancerDecisionLoop = 0
-    while NecromancerDecisionLoop == 0:
-        PathBDecisionChoice = input("Would you like to \na) Kill the necromancer and take the stone \nor \nb) Take the stone and leave").lower()
-        if PathBDecisionChoice == 'a':
+    necromancer_decision_loop = 0
+    while necromancer_decision_loop == 0:
+        path_b_decision_choice = input("Would you like to \na) Kill the necromancer and take the stone \nor \nb) Take the stone and leave").lower()
+        if path_b_decision_choice == 'a':
             print("\nYou raise your sword and bring it down hard, instantly killing the old man. You take the stone from his possession as you take your leave.")
-            NecromancerDecisionLoop += 1
-        elif PathBDecisionChoice == 'b':
+            necromancer_decision_loop += 1
+        elif path_b_decision_choice == 'b':
             print("\nYou walk over to the old man and take the stone from him. 'Thank you for your mercy! Sorry for the trouble I have caused!' he shouts as you take your leave.")
-            NecromancerDecisionLoop += 1
+            necromancer_decision_loop += 1
         else:
-            PathBDecisionChoice = input("Would you like to \na) Kill the necromancer and take the stone \nor \nb) Take the stone and leave").lower()
+            path_b_decision_choice = input("Would you like to \na) Kill the necromancer and take the stone \nor \nb) Take the stone and leave").lower()
 
 
-def PathBHeroLore():
+def path_b_hero_lore():
     print("\nYou wake up to the sound of someone yelling 'INTRUDER!'")
 
-    choiceloopHero = 0
-    while choiceloopHero <= 0:
-        choiceHero = input('\nWhat would you like to? \na) Investigate \nor \nb) Go back to sleep?').lower()
-        if choiceHero == 'b':
+    choice_loop_hero = 0
+    while choice_loop_hero <= 0:
+        choice_hero = input('\nWhat would you like to? \na) Investigate \nor \nb) Go back to sleep?').lower()
+        if choice_hero == 'b':
             print("\n\nYou start to drift back to sleep, "
                   "going back into that sweet dream of all you"
                   " can eat meat pies \nzZzZ \nZz \nYour eyes"
@@ -167,8 +168,8 @@ def PathBHeroLore():
 
             print("'GET UP FUGGS!' \n'DONT YOU HEAR WE "
                   "HAVE AN INTRUDER IN OUR BASE!'")
-            choiceloopHero += 1
-        elif choiceHero == 'a':
+            choice_loop_hero += 1
+        elif choice_hero == 'a':
             print("\n\nYou stand up, rubbing the crust off your eyes"
                   ", you take a deep breath, letting the damp"
                   " air of the cave fill your lungs and "
@@ -176,9 +177,9 @@ def PathBHeroLore():
                   " figure out why it smells like "
                   "metal around here' \nYour door"
                   " swings open")
-            choiceloopHero += 1
+            choice_loop_hero += 1
         else:
-            choiceHero = input('\nWhat would you like to?'
+            choice_hero = input('\nWhat would you like to?'
                                '\na) Investigate'
                                '\nb) Go back to sleep?').lower()
     print('\nYou meet eyes with Chieftain Rammi,'
