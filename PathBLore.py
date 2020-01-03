@@ -1,5 +1,5 @@
-#Daniel Lobos
-#Text Based adventure game
+# Daniel Lobos
+# Text Based adventure game
 
 
 import PathC
@@ -82,6 +82,7 @@ def chapter1():
           " I want to add you tuo my"
           " collection' says the old man.")
 
+
 def zombie_fight():
     print("\nThe Zombie drops the items in"
           " its hands and begins to make"
@@ -94,17 +95,20 @@ def skeleton_fight():
           "body in a stance you know from "
           "sparing is one ready for a fight.")
 
+
 def skeleton_defeat():
     print("\n'Sizrio! Nooo! He was my "
           "favorite soldier, we were"
           " just truly becoming friends!")
     zombie_fight()
 
+
 def zombie_defeat():
     print("\n'Joseph! Nooo! He was my favorite"
           " zombie, and he was just "
           "getting good at juggling"
           " for me!")
+
 
 def after_first_fight():
     print("\n'Okay, okay, I was mistaken "
@@ -115,6 +119,7 @@ def after_first_fight():
           "rustling in the tent and call out")
 
     print("'Everything okay in there?!' but to no response.")
+
 
 def zombie_bear_fight():
     print("You hear the clattering of chains as"

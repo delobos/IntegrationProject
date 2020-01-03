@@ -4,10 +4,10 @@
 
 import PathALore
 
-FuggsData = {'name' : "Fuggs",
+FuggsData = {'name': "Fuggs",
              'health': 100,
-             'location Name' : 'Pyramid Entrance',
-             'location' : "You are at the entrance of a pyramid."}
+             'location Name': 'Pyramid Entrance',
+             'location': "You are at the entrance of a pyramid."}
 
 
 class Location:
@@ -308,7 +308,7 @@ def three_statues_room2_description():
           " right side of the room.")
 
 
-def seve_statue_room_description():
+def seven_statue_room_description():
     print("\nYou enter a large empty room"
           " except for the seven gargoyle "
           "statues each with one are held "
@@ -344,9 +344,10 @@ room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look'), it
 Room possible moves and actions
 """
 
+
 def entrance_room_move_and_actions(player_input):
     if player_input in room.moves:
-            entrance_room_moves(player_input)
+        entrance_room_moves(player_input)
     elif player_input in room.actions:
         entrance_room_actions(player_input)
     else:
@@ -356,7 +357,7 @@ def entrance_room_move_and_actions(player_input):
 
 def storage_room_move_and_actions(player_input):
     if player_input in room.moves:
-            storage_room_moves(player_input)
+        storage_room_moves(player_input)
     elif player_input in room.actions:
         storage_room_actions(player_input)
     else:
@@ -428,6 +429,7 @@ def stone_room_move_and_actions(player_input):
 Room moves code
 """
 
+
 def entrance_room_moves(player_moves):
     if player_moves == 'forward' or player_moves == 'up':
         dog_statue_room_description()
@@ -456,7 +458,7 @@ def entrance_room_moves(player_moves):
         FuggsData['location'] = 'You are in a storage' \
                                 ' room full of furniture,' \
                                 ' barrels, and crates.'
-        room = Location(('forward', 'back', 'left','up', 'down', 'right'), ('look', 'grab', 'take', 'pry'), items, doors, second_floor_statues, puzzle_lock, lanterns)
+        room = Location(('forward', 'back', 'left', 'up', 'down', 'right'), ('look', 'grab', 'take', 'pry'), items, doors, second_floor_statues, puzzle_lock, lanterns)
         storage_room()
     elif player_moves == 'left':
         print("\nYou see a big plain wall")
@@ -573,7 +575,7 @@ def base_floor_staircase_room_moves(player_moves):
         FuggsData['location Name'] = 'Three Statue' \
                                      ' Room Right Side'
         global room
-        room = Location(('forward','back', 'up', 'down', 'left', 'right'), ('look', 'take', 'carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, second_floor_statues, puzzle_lock, lanterns)
+        room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'take', 'carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, second_floor_statues, puzzle_lock, lanterns)
         three_statue_room1()
     elif player_moves == 'back' or player_moves == 'down':
         print("\nYou are met with a "
@@ -631,7 +633,7 @@ def three_statue_room1_moves(player_moves):
                                 'left side of the' \
                                 ' room with three' \
                                 ' empty pedestals'
-        room = Location(('forward', 'back', 'left',  'up', 'down', 'right'), ('look', 'take','carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, second_floor_statues, puzzle_lock, lanterns)
+        room = Location(('forward', 'back', 'left',  'up', 'down', 'right'), ('look', 'take', 'carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, second_floor_statues, puzzle_lock, lanterns)
         three_statue_room2()
     elif player_moves == 'back' or player_moves == 'down':
         print("\nYou are met "
@@ -654,7 +656,7 @@ def three_statue_room2_moves(player_moves):
         elif doors['Second floor stairs door'] == 'open':
             FuggsData['location Name'] = 'Seven Statue Room'
             if items['torch'] == 'inventory':
-                seve_statue_room_description()
+                seven_statue_room_description()
                 FuggsData['location'] = 'You see seven ' \
                                         'statues on the south ' \
                                         'side of the wall,' \
@@ -680,7 +682,7 @@ def three_statue_room2_moves(player_moves):
                                 '3 empty pillars on ' \
                                 'the left side ' \
                                 'of the room'
-        room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'take','carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, second_floor_statues, puzzle_lock, lanterns)
+        room = Location(('forward', 'back', 'up', 'down', 'left', 'right'), ('look', 'take', 'carry', 'grab', 'haul', 'place', 'put', 'use', 'set'), items, doors, second_floor_statues, puzzle_lock, lanterns)
         three_statue_room1()
     elif player_moves == 'left':
         print("\nYou see three "
@@ -756,7 +758,7 @@ def seven_statue_room_moves(player_moves):
 
 def stone_room_moves(player_moves):
     if player_moves == 'forward' or player_moves == 'up':
-        seve_statue_room_description()
+        seven_statue_room_description()
         FuggsData['location'] = 'You see seven statues' \
                                 ' on the south side ' \
                                 'of the wall, each of ' \
@@ -870,8 +872,7 @@ def dog_statue_room_actions(player_action):
             game_on()
     elif player_action == 'use' or player_action == 'give' or player_action == 'put' or player_action == 'place':
         if items['Moon Stone'] == 'inventory':
-            dog_statue_use_action = input("\nWhat do you want to "
-                                       "use the Moon Stone on? ").lower()
+            dog_statue_use_action = input("\nWhat do you want to use the Moon Stone on? ").lower()
             if dog_statue_use_action == 'dog statue' or dog_statue_use_action == 'dog' or dog_statue_use_action == 'statue':
                 items['Moon Stone'] = 'Dog Statue'
                 print("\nYou place the stone"
@@ -921,8 +922,7 @@ def three_statue_room1_actions(player_action):
         game_on()
 
     elif player_action == 'grab' or player_action == 'take' or player_action == 'carry' or player_action == 'grab' or player_action == 'haul':
-        three_statue_room1_grab = input("\nWhat would you like"
-                                     " to {}? ".format(player_action)).lower()
+        three_statue_room1_grab = input("\nWhat would you like to {}? ".format(player_action)).lower()
         if three_statue_room1_grab == 'chicken' or three_statue_room1_grab == 'chicken statue':
             if second_floor_statues['Chicken Statue'] == 'Right' \
                                                        ' Side' and items['hands'] == 'not full':
@@ -931,8 +931,7 @@ def three_statue_room1_actions(player_action):
                           ", try resetting the statues")
                     game_on()
                 else:
-                    second_floor_statues['Chicken ' \
-                                       'Statue'] = 'carry'
+                    second_floor_statues['Chicken Statue'] = 'carry'
                     items['hands'] = 'full'
                     print("\nYou pick up the "
                           "statue of the chicken")
@@ -1241,7 +1240,6 @@ def puzzle_lock_reset():
         pass
 
 
-
 def seven_statues_solution_check():
     if lanterns['Lantern 3'] == 'lit' and lanterns['Lantern 4'] == 'lit' and lanterns['Lantern 7'] == 'lit':
         doors['Third floor stairs door'] = 'open'
@@ -1254,6 +1252,7 @@ def seven_statues_solution_check():
 Room initiate code
 
 """
+
 
 def entrance_room():
     player_input = input('What would you like to do? ').lower()

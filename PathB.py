@@ -118,7 +118,7 @@ def drink_potion():
         player.potions -= 1
         print("\nYou have {} health points".format(player.health))
         if player.health > 100:
-            print("With", (player.health - 100) , "as temporary health points.")
+            print("With", (player.health - 100), "as temporary health points.")
         else:
             pass
 
@@ -195,15 +195,18 @@ def fight_on():
             else:
                 turn = "Fuggs"
 
+
 player = Character()
+
+
 enemy = Baddie("Skeleton")
 
 
 def path_b_skeleton_battle():
     while player.health > 1:
-        PathBLore.SkeletonFight()
+        PathBLore.skeleton_fight()
         fight_on()
-        PathBLore.SkeletonDefeat()
+        PathBLore.skeleton_defeat()
         break
 
 
@@ -212,9 +215,9 @@ def path_b_zombie_battle():
         global enemy
         enemy = Baddie("Zombie")
         fight_on()
-        PathBLore.ZombieDefeat()
-        PathBLore.AfterFirstFight()
-        PathBLore.ZombieBearFight()
+        PathBLore.zombie_defeat()
+        PathBLore.after_first_fight()
+        PathBLore.zombie_bear_fight()
         break
 
 
@@ -227,15 +230,14 @@ def path_b_zombie_bear():
 
 
 def path_b_end():
-    PathBLore.afterAllFights()
-    PathC.continueLore()
-    PathC.ReturnLore()
-    PathC.RitualLore()
-    PathBLore.PathBHeroLore()
+    PathBLore.after_all_fight()
+    PathC.continue_lore()
+    PathC.return_lore()
+    PathC.ritual_lore()
+    PathBLore.path_b_hero_lore()
 
 
 def path_b_final_battle():
     global enemy
     enemy = Hero()
     fight_on()
-

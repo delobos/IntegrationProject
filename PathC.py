@@ -2,7 +2,6 @@
 # Text Based adventure game
 
 
-
 name = input('What is your name? ')
 print('\nWelcome ' + name + '!')
 
@@ -131,6 +130,7 @@ def step_out_pathc_lore():
     print("You wiggle free of the grasp of the remaining claw, falling 30 feet into McDollini's wheat field that softens the landing.")
     print("You see the injured crow flying sporadically in the direction of the crows from earlier.")
 
+
 def step_out_pathc_lore2():
     print("You begin to thrash about trying to get the crow to loosen its grip around your chest. The shaking is enough for the crow to begin to screech with anger and you notice the sudden shifts in altitude.")
     print("For a moment you are released and begin to free fall before being caught again by the crow but not without loosing to much speed and the both of you falling quickly to the ground.")
@@ -167,7 +167,7 @@ def step_out_kill_lore2():
 
 
 def step_out_talk_lore():
-    print("With the crow flying overhead you call out to the crow and lower your weapon. You see the crow pull its wings forward, making itself wide as it floats down towards you. It lands a few feet in front of you" )
+    print("With the crow flying overhead you call out to the crow and lower your weapon. You see the crow pull its wings forward, making itself wide as it floats down towards you. It lands a few feet in front of you")
     print("'What you want?' the crow screeches at you in common.")
 
 
